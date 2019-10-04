@@ -23,7 +23,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "sqs-rms-adi-sigma/handler.py",
-        "code": "from hamutils.adif import ADIReader\nimport sys\nimport boto3\n\ndef handler(event, context):\n    \n    return {\"message\": \"Successfully executed\"}\n",
+        "code": "from hamutils.adif import ADIReader\nimport sys\nimport boto3\n\ndef handler(event, context):\n    \n    a = \"World\"\n    print(\"Hello \")\n    print(a)\n    return {\"message\": \"Successfully executed\"}\n",
         "config": {
           "runtime": "python3.6",
           "handler": "handler",
@@ -92,7 +92,7 @@
     "projectRegion": "us-east-2",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1570151769785
+    "lastSave": 1570153695690
   },
   "VCS_STATE": {
     "provider": "GitHub",
