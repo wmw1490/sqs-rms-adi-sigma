@@ -45,9 +45,7 @@
         "code": ""
       }
     },
-    "deletedFiles": [
-      "sqs-rms-adi-sigma/lambda.js"
-    ],
+    "deletedFiles": [],
     "rootNode": "23b6ada3-8175-4735-876e-654ceb86b5c9",
     "openFiles": [
       "b4d95797-d26f-4c56-b024-39c021b56bc9"
@@ -77,7 +75,14 @@
       }
     ],
     "packageJSON": {
-      "dependencies": {}
+      "dependencies": {
+        "hamutils": {
+          "name": "hamutils",
+          "version": "0.2.0",
+          "dev": false,
+          "language": "python"
+        }
+      }
     }
   },
   "PROJECT_META": {
@@ -87,7 +92,7 @@
     "projectRegion": "us-east-2",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1570151569907
+    "lastSave": 1570151769785
   },
   "VCS_STATE": {
     "provider": "GitHub",
