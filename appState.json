@@ -1,0 +1,99 @@
+{
+  "EDITOR_STATE": {
+    "allProjectFiles": {
+      "23b6ada3-8175-4735-876e-654ceb86b5c9": {
+        "id": "23b6ada3-8175-4735-876e-654ceb86b5c9",
+        "parent": null,
+        "name": "sqs-rms-adi-sigma",
+        "type": "DIRECTORY",
+        "isDirectory": true,
+        "children": [
+          "b4d95797-d26f-4c56-b024-39c021b56bc9",
+          "26ad4934-78b1-4d45-80dd-3cb85405ee1b"
+        ],
+        "isRemovable": false,
+        "filePath": "sqs-rms-adi-sigma"
+      },
+      "b4d95797-d26f-4c56-b024-39c021b56bc9": {
+        "id": "b4d95797-d26f-4c56-b024-39c021b56bc9",
+        "parent": "23b6ada3-8175-4735-876e-654ceb86b5c9",
+        "name": "handler.py",
+        "type": "PYTHON_LAMBDA",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "sqs-rms-adi-sigma/handler.py",
+        "code": "from hamutils.adif import ADIReader\nimport sys\nimport boto3\n\ndef handler(event, context):\n    \n    return {\"message\": \"Successfully executed\"}\n",
+        "config": {
+          "runtime": "python3.6",
+          "handler": "handler",
+          "timeout": 60,
+          "memory": 256,
+          "layers": []
+        },
+        "triggers": []
+      },
+      "26ad4934-78b1-4d45-80dd-3cb85405ee1b": {
+        "id": "26ad4934-78b1-4d45-80dd-3cb85405ee1b",
+        "parent": "23b6ada3-8175-4735-876e-654ceb86b5c9",
+        "name": "__init__.py",
+        "type": "PYTHON_FILE",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "sqs-rms-adi-sigma/__init__.py",
+        "code": ""
+      }
+    },
+    "deletedFiles": [
+      "sqs-rms-adi-sigma/lambda.js"
+    ],
+    "rootNode": "23b6ada3-8175-4735-876e-654ceb86b5c9",
+    "openFiles": [
+      "b4d95797-d26f-4c56-b024-39c021b56bc9"
+    ],
+    "currentFileId": "b4d95797-d26f-4c56-b024-39c021b56bc9",
+    "resources": {},
+    "customTemplate": {
+      "dialect": null,
+      "definitions": {}
+    },
+    "envVariables": [
+      {
+        "lambdaId": "all",
+        "varKey": "SIGMA_AWS_ACC_ID",
+        "varValue": null,
+        "shouldPersist": false,
+        "displayOnly": false,
+        "editable": false
+      },
+      {
+        "lambdaId": "b4d95797-d26f-4c56-b024-39c021b56bc9",
+        "varKey": "PYTHONPATH",
+        "varValue": "/var/runtime:/var/task/sqs-rms-adi-sigma",
+        "shouldPersist": true,
+        "displayOnly": false,
+        "editable": true
+      }
+    ],
+    "packageJSON": {
+      "dependencies": {}
+    }
+  },
+  "PROJECT_META": {
+    "projectName": "sqs-rms-adi-sigma",
+    "projectDescription": "sqs function for handling rms trimode adi files",
+    "projectVersion": "1.0.0",
+    "projectRegion": "us-east-2",
+    "platform": "AWS",
+    "platformRegions": {},
+    "lastSave": 1570151569907
+  },
+  "VCS_STATE": {
+    "provider": "GitHub",
+    "repo": {
+      "name": "sqs-rms-adi-sigma",
+      "url": "https://github.com/wmw1490/sqs-rms-adi-sigma"
+    }
+  }
+}
