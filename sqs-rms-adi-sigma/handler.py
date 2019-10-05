@@ -21,16 +21,18 @@ def handler(event, context):
     )
     # get the body of the message
     body = response.get('Body')
+    qsostring = response['Messages'][0]['Body']
 
     # Connect to DynamoDB
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('QSO')
     # Attempt to insert into DynamoDB table
     try:
-        table.put_item(Item={'QSOdatetime': body} )                     
+        table.put_item(Item={'QSOdatetime': qsostring} )                     
     except:
         # do nothing
         print('Unable to write to DynamoDB')
+        print(body)
 
 
     return {"message": "Successfully executed"}

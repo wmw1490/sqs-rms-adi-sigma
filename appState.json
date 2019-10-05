@@ -23,7 +23,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "sqs-rms-adi-sigma/handler.py",
-        "code": "from hamutils.adif import ADIReader\nimport sys\nimport boto3\n\ndef handler(event, context):\n    \n    client = boto3.client('sqs')\n\n    response = client.receive_message(\n        QueueUrl='https://sqs.us-east-2.amazonaws.com/578839498373/sqs-rms-adi-in',\n        AttributeNames=[\n            'All',\n        ],\n        MessageAttributeNames=[\n            '',\n        ],\n        MaxNumberOfMessages=1,\n        VisibilityTimeout=123,\n        WaitTimeSeconds=10,\n        ReceiveRequestAttemptId=''\n    )\n    # get the body of the message\n    body = response.get('Body')\n\n    # Connect to DynamoDB\n    dynamodb = boto3.resource('dynamodb')\n    table = dynamodb.Table('QSO')\n    # Attempt to insert into DynamoDB table\n    try:\n        table.put_item(Item={'QSOdatetime': body} )                     \n    except:\n        # do nothing\n        print('Unable to write to DynamoDB')\n\n\n    return {\"message\": \"Successfully executed\"}\n",
+        "code": "from hamutils.adif import ADIReader\nimport sys\nimport boto3\n\ndef handler(event, context):\n    \n    client = boto3.client('sqs')\n\n    response = client.receive_message(\n        QueueUrl='https://sqs.us-east-2.amazonaws.com/578839498373/sqs-rms-adi-in',\n        AttributeNames=[\n            'All',\n        ],\n        MessageAttributeNames=[\n            '',\n        ],\n        MaxNumberOfMessages=1,\n        VisibilityTimeout=123,\n        WaitTimeSeconds=10,\n        ReceiveRequestAttemptId=''\n    )\n    # get the body of the message\n    body = response.get('Body')\n    qsostring = response['Messages'][0]['Body']\n\n    # Connect to DynamoDB\n    dynamodb = boto3.resource('dynamodb')\n    table = dynamodb.Table('QSO')\n    # Attempt to insert into DynamoDB table\n    try:\n        table.put_item(Item={'QSOdatetime': qsostring} )                     \n    except:\n        # do nothing\n        print('Unable to write to DynamoDB')\n        print(body)\n\n\n    return {\"message\": \"Successfully executed\"}\n",
         "config": {
           "runtime": "python3.6",
           "handler": "handler",
@@ -92,7 +92,7 @@
     "projectRegion": "us-east-2",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1570289522994
+    "lastSave": 1570293106598
   },
   "VCS_STATE": {
     "provider": "GitHub",
