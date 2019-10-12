@@ -25,7 +25,7 @@ def handler(event, context):
     qsolocation, qsodatetime, qsobearing, qsocallsign, qsocmsbytes,    \
        qsoseconds, qsodistance, qsofreq, qsogridsquare,  \
        qsolastcommand, qsomode, qsomsgrcv, qsomsgsent, qsoradiobytes, \
-       gwgridsq = qsostring.split(',')
+       gwgridsq, gwcallsign = qsostring.split(',')
 
     # Connect to DynamoDB
     dynamodb = boto3.resource('dynamodb')
@@ -37,13 +37,10 @@ def handler(event, context):
             'QSOseconds': qsoseconds, 'QSOdistance': qsodistance, 'QSOfreq': qsofreq, \
             'QSOgridsquare': qsogridsquare, 'QSOlastcommand': qsolastcommand, \
             'QSOmode': qsomode, 'QSOmsgrcv': qsomsgrcv, 'QSOmsgsent': qsomsgsent, \
-            'QSOradiobytes': qsoradiobytes, 'GWgridsq': gwgridsq } )          
+            'QSOradiobytes': qsoradiobytes, 'GWgridsq': gwgridsq, 'GWcallsign': gwcallsign } )          
 
         try:
             # Delete message from sqs once added to dynamodb
-#            message = response['Messages'][0]
-#            receipt_handle = message['ReceiptHandle']
-#            sqs.delete_message(QueueUrl='https://sqs.us-east-2.amazonaws.com/578839498373/sqs-rms-adi-in', ReceiptHandle=receipt_handle)
             response = client.delete_message(
                 QueueUrl='https://sqs.us-east-2.amazonaws.com/578839498373/sqs-rms-adi-in',
                 ReceiptHandle=response['Messages'][0]['ReceiptHandle'])
