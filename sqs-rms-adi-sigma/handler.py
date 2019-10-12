@@ -23,7 +23,7 @@ def handler(event, context):
     qsostring = response['Messages'][0]['Body']
 
     qsolocation, qsodatetime, qsobearing, qsocallsign, qsocmsbytes,    \
-       qsoseconds, QSOdistance, qsofreq, qsogridsquare,  \
+       qsoseconds, qsodistance, qsofreq, qsogridsquare,  \
        qsolastcommand, qsomode, qsomsgrcv, qsomsgsent, qsoradiobytes = qsostring.split(',')
 
     # Connect to DynamoDB
