@@ -41,8 +41,11 @@ def handler(event, context):
         try:
             # Delete message from sqs once added to dynamodb
 #            message = response['Messages'][0]
-            receipt_handle = message['ReceiptHandle']
-            sqs.delete_message(QueueUrl='https://sqs.us-east-2.amazonaws.com/578839498373/sqs-rms-adi-in', ReceiptHandle=receipt_handle)
+#            receipt_handle = message['ReceiptHandle']
+#            sqs.delete_message(QueueUrl='https://sqs.us-east-2.amazonaws.com/578839498373/sqs-rms-adi-in', ReceiptHandle=receipt_handle)
+            response = client.delete_message(
+                QueueUrl='https://sqs.us-east-2.amazonaws.com/578839498373/sqs-rms-adi-in',
+                ReceiptHandle=response['Messages'][0]['ReceiptHandle'])
         except:
             print('**unable to delete message**')
     except:
