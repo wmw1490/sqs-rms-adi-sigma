@@ -38,13 +38,13 @@ def handler(event, context):
             'QSOmode': qsomode, 'QSOmsgrcv': qsomsgrcv, 'QSOmsgsent': qsomsgsent, \
             'QSOradiobytes': qsoradiobytes } )          
 
-            try:
-                # Delete message from sqs once added to dynamodb
-                message = response['Messages'][0]
-                receipt_handle = message['ReceiptHandle']
-                sqs.delete_message(QueueUrl='https://sqs.us-east-2.amazonaws.com/578839498373/sqs-rms-adi-in', ReceiptHandle=receipt_handle)
-            except:
-                print('**unable to delete message**')
+        try:
+            # Delete message from sqs once added to dynamodb
+            message = response['Messages'][0]
+            receipt_handle = message['ReceiptHandle']
+            sqs.delete_message(QueueUrl='https://sqs.us-east-2.amazonaws.com/578839498373/sqs-rms-adi-in', ReceiptHandle=receipt_handle)
+        except:
+            print('**unable to delete message**')
     except:
         # do nothing
         print('Unable to write to DynamoDB')
