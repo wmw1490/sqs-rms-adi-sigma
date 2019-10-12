@@ -25,7 +25,7 @@ def handler(event, context):
     qsolocation, qsodatetime, qsobearing, qsocallsign, qsocmsbytes,    \
        qsoseconds, qsodistance, qsofreq, qsogridsquare,  \
        qsolastcommand, qsomode, qsomsgrcv, qsomsgsent, qsoradiobytes, \
-       gwgridsq, gwcallsign = qsostring.split(',')
+       gwgridsq, gwcallsign, qsohash = qsostring.split(',')
 
     # Connect to DynamoDB
     dynamodb = boto3.resource('dynamodb')
@@ -37,7 +37,8 @@ def handler(event, context):
             'QSOseconds': qsoseconds, 'QSOdistance': qsodistance, 'QSOfreq': qsofreq, \
             'QSOgridsquare': qsogridsquare, 'QSOlastcommand': qsolastcommand, \
             'QSOmode': qsomode, 'QSOmsgrcv': qsomsgrcv, 'QSOmsgsent': qsomsgsent, \
-            'QSOradiobytes': qsoradiobytes, 'GWgridsq': gwgridsq, 'GWcallsign': gwcallsign } )          
+            'QSOradiobytes': qsoradiobytes, 'GWgridsq': gwgridsq, 'GWcallsign': gwcallsign, \
+            'QSOhash': qsohash } )          
 
         try:
             # Delete message from sqs once added to dynamodb
