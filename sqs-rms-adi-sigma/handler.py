@@ -1,6 +1,8 @@
 import sys
 import boto3
+from iopipe import IOpipe
 
+@iopipe
 def handler(event, context):
     
     client = boto3.client('sqs')
