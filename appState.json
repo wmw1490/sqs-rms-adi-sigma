@@ -48,7 +48,29 @@
       "b4d95797-d26f-4c56-b024-39c021b56bc9"
     ],
     "currentFileId": "b4d95797-d26f-4c56-b024-39c021b56bc9",
-    "resources": {},
+    "resources": {
+      "sqssqsRmsAdiIn": {
+        "name": "sqssqsRmsAdiIn",
+        "type": "SQS",
+        "config": {
+          "mode": 1,
+          "existing": true,
+          "name": "sqs-rms-adi-in",
+          "url": "https://sqs.us-east-2.amazonaws.com/578839498373/sqs-rms-adi-in",
+          "selectedRegion": "us-east-2",
+          "deliveryDelay": "0",
+          "deliveryDelayUnit": "seconds",
+          "queueType": "standardQueue",
+          "defaultVisibilityTimeout": "30",
+          "defaultVisibilityTimeoutUnit": "seconds",
+          "messageRetentionPeriod": "345600",
+          "messageRetentionPeriodUnit": "seconds",
+          "maximumMessageSize": 256,
+          "receiveMessageWaitTime": "0",
+          "queueARN": "arn:aws:sqs:us-east-2:578839498373:sqs-rms-adi-in"
+        }
+      }
+    },
     "customTemplate": {
       "dialect": null,
       "definitions": null
@@ -78,6 +100,13 @@
           "version": "1.10.2",
           "dev": false,
           "language": "python"
+        },
+        "boto3": {
+          "name": "boto3",
+          "language": "python",
+          "version": "1.9.6",
+          "dev": true,
+          "notRemovable": false
         }
       }
     }
@@ -89,7 +118,7 @@
     "projectRegion": "us-east-2",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1580100558729
+    "lastSave": 1580100932517
   },
   "VCS_STATE": {
     "provider": "GitHub",

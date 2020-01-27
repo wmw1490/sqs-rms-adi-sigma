@@ -1,26 +1,26 @@
 import sys
 import boto3
+sqs = boto3.client("sqs")
+from os import environ
 
 def handler(event, context):
     
     client = boto3.client('sqs')
+    try:
+        data = sqs.receive_message(
+            QueueUrl="https://sqs.{}.amazonaws.com/{}/sqs-rms-adi-in".format(environ["AWS_REGION"], environ["SIGMA_AWS_ACC_ID"]),
+            AttributeNames=['All'],
+            MaxNumberOfMessages=1,
+            VisibilityTimeout=30,
+            WaitTimeSeconds=0
+        )
+    except BaseException as e:
+        print(e)
+        raise(e)
 
-    response = client.receive_message(
-        QueueUrl='https://sqs.us-east-2.amazonaws.com/578839498373/sqs-rms-adi-in',
-        AttributeNames=[
-            'All',
-        ],
-        MessageAttributeNames=[
-            '',
-        ],
-        MaxNumberOfMessages=1,
-        VisibilityTimeout=123,
-        WaitTimeSeconds=10,
-        ReceiveRequestAttemptId=''
-    )
     # get the body of the message
-    body = response.get('Body')
-    qsostring = response['Messages'][0]['Body']
+    body = data.get('Body')
+    qsostring = data['Messages'][0]['Body']
 
     qsolocation, qsodatetime, qsobearing, qsocallsign, qsocmsbytes,    \
        qsoseconds, qsodistance, qsofreq, qsogridsquare,  \
